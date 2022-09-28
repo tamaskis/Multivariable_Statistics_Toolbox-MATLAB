@@ -1,8 +1,8 @@
 %==========================================================================
 %
-% sample_mean  Mean of a sample.
+% sample_statistics  Mean and covariance of a sample.
 %
-%   mu = sample_mean(x)
+%   [mu,Sigma] = sample_statistics(x)
 %
 % Copyright © 2022 Tamas Kis
 % Last Update: 2022-09-27
@@ -25,10 +25,11 @@
 % -------
 % OUTPUT:
 % -------
-%   mu      - (n×1 double) mean of X, μ
+%   mu      - (n×1 double) mean of X
+%   Sigma   - (n×n double) covariance of X
 %
 %==========================================================================
-function mu = sample_mean(x)
+function [mu,Sigma] = sample_statistics(x)
     
     % dimension of X
     n = size(x,1);
@@ -42,5 +43,12 @@ function mu = sample_mean(x)
         mu = mu+x(:,i);
     end
     mu = mu/N;
+    
+    % covariance
+    Sigma = zeros(n,n);
+    for i = 1:N
+        Sigma = Sigma+(x(:,i)-mu)*(x(:,i)-mu).';
+    end
+    Sigma = Sigma/(N-1);
     
 end
