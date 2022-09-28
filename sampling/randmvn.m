@@ -5,8 +5,12 @@
 %   x = randmvn(mu,Sigma)
 %   x = randmvn(mu,Sigma,N)
 %
-% Author: Tamas Kis
-% Last Update: 2022-04-15
+% See also randmvu.
+%
+% Copyright © 2022 Tamas Kis
+% Last Update: 2022-09-27
+% Website: https://tamaskis.github.io
+% Contact: tamas.a.kis@outlook.com
 %
 %--------------------------------------------------------------------------
 %
@@ -15,7 +19,7 @@
 % ------
 %   mu      - (n×1 double) mean, μ
 %   Sigma   - (n×n double) covariance, Σ
-%   N       - (1×1 double) (OPTIONAL) sample size (defaults to 1)
+%   N       - (OPTIONAL) (1×1 double) sample size (defaults to 1)
 %
 % -------
 % OUTPUT:

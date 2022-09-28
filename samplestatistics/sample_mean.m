@@ -1,8 +1,8 @@
 %==========================================================================
 %
-% linear_transform  Linear transformation of mean and covariance.
+% sample_mean  Mean of a sample.
 %
-%   [mu_y,Sigma_yy] = linear_transform(mu_x,Sigma_xx,A)
+%   mu = sample_mean(x)
 %
 % Copyright © 2022 Tamas Kis
 % Last Update: 2022-09-27
@@ -20,23 +20,27 @@
 % ------
 % INPUT:
 % ------
-%   mu_x        - (n×1 double) mean of X
-%   Sigma_xx    - (n×n double) covariance of X
-%   A           - (m×n double) matrix defining linear transformation Y = AX
+%   x       - (n×N double) N samples of X
 %
 % -------
 % OUTPUT:
 % -------
-%   mu_y        - (m×1 double) mean of Y
-%   Sigma_yy    - (m×m double) covariance of Y
+%   mu      - (n×1 double) mean of X, μ
 %
 %==========================================================================
-function [mu_y,Sigma_yy] = linear_transform(mu_x,Sigma_xx,A)
+function mu = sample_mean(x)
     
-    % mean of Y
-    mu_y = A*mu_x;
+    % dimension of X
+    n = size(x,1);
     
-    % covariance of Y
-    Sigma_yy = A*Sigma_xx*A.';
+    % sample size
+    N = size(x,2);
+    
+    % mean
+    mu = zeros(n,1);
+    for i = 1:N
+        mu = mu+x(:,i);
+    end
+    mu = mu/N;
     
 end

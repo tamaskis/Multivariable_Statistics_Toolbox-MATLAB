@@ -5,8 +5,16 @@
 %
 %   [mu_y,Sigma_yy] = linearized_transform(mu_x,Sigma_xx,f)
 %
-% Author: Tamas Kis
-% Last Update: 2022-04-27
+% Copyright © 2022 Tamas Kis
+% Last Update: 2022-09-27
+% Website: https://tamaskis.github.io
+% Contact: tamas.a.kis@outlook.com
+%
+% TOOLBOX DOCUMENTATION:
+% https://tamaskis.github.io/Multivariable_Statistics_Toolbox-MATLAB/
+%
+% TECHNICAL DOCUMENTATION:
+% https://tamaskis.github.io/files/Multivariable_Statistics_Tools.pdf
 %
 %--------------------------------------------------------------------------
 %
