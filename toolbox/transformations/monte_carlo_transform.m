@@ -26,7 +26,7 @@
 %   Sigma_xx    - (n×n double) covariance of X
 %   f           - (1×1 function_handle) multivariate, vector-valued 
 %                 function, Y = f(X) (f : ℝⁿ → ℝᵐ)
-%   N           - (1×1 double) (OPTIONAL) sample size (defaults to 1000)
+%   N           - (OPTIONAL) (1×1 double) sample size (defaults to 1000)
 %
 % -------
 % OUTPUT:
@@ -57,22 +57,11 @@ function [mu_y,Sigma_yy] = monte_carlo_transform(mu_x,Sigma_xx,f,N)
     y = zeros(m,N);
     
     % transforms X to Y
-    for i = 1:N
-        y(:,i) = f(x(:,i));
+    for k = 1:N
+        y(:,k) = f(x(:,k));
     end
     
-    % approximates mean of Y using sample mean
-    mu_y = zeros(m,1);
-    for i = 1:N
-        mu_y = mu_y+y(:,i);
-    end
-    mu_y = mu_y/N;
-    
-    % approximates covariance of Y using sample covariance
-    Sigma_yy = zeros(m,m);
-    for i = 1:N
-        Sigma_yy = Sigma_yy+(y(:,i)-mu_y)*(y(:,i)-mu_y).';
-    end
-    Sigma_yy = Sigma_yy/(N-1);
+    % approximates statistics of X and Y
+    [mu_y,Sigma_yy] = sample_statistics(x,y);
     
 end

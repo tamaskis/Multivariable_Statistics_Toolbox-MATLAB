@@ -28,14 +28,14 @@
 %   Sigma_xx    - (n×n double) covariance of X
 %   f           - (1×1 function_handle) multivariate, vector-valued 
 %                 function, Y = f(X) (f : ℝⁿ → ℝᵐ)
-%   cross_covar - (1×1 logical) (OPTIONAL) input as "true" if cross 
+%   cross_covar - (OPTIONAL) (1×1 logical) input as "true" if cross 
 %                 covariance of X and Y should be calculated) (defaults to 
 %                 false)
-%   alpha       - (1×1 double) (OPTIONAL) spread parameter, α (defaults to
+%   alpha       - (OPTIONAL) (1×1 double) spread parameter, α (defaults to
 %                 10⁻³)
-%   beta        - (1×1 double) (OPTIONAL) distribution parameter, β 
+%   beta        - (OPTIONAL) (1×1 double) distribution parameter, β 
 %                 (defaults to 2, assuming X is Gaussian)
-%   kappa       - (1×1 double) (OPTIONAL) secondary scaling parameter, κ 
+%   kappa       - (OPTIONAL) (1×1 double) secondary scaling parameter, κ 
 %                 (defaults to 0)
 %
 % -------
