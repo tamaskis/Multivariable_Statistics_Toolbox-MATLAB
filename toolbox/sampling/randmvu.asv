@@ -1,7 +1,6 @@
 %==========================================================================
 %
-% randmvu  Generate a random sample from a multivariate uniform 
-% distribution.
+% randmvu Generate random samples from a multivariate uniform distribution.
 %
 %   x = randmvu(a,b)
 %   x = randmvu(a,b,N)
@@ -9,7 +8,7 @@
 % See also randmvn.
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-09-28
+% Last Update: 2022-09-27
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -25,7 +24,7 @@
 % -------
 % OUTPUT:
 % -------
-%   x       - (n×N double) random sample of size N from X ~ U(a,b)
+%   x       - (n×N double) N samples from X ~ U(a,b)
 %
 %==========================================================================
 function x = randmvu(a,b,N)
@@ -35,15 +34,13 @@ function x = randmvu(a,b,N)
         N = 1;
     end
     
-    % dimension of random vector
-    n = length(a);
+    % A matrix and u vector
+    A = a*ones(1,N);
+    u = rand(1,N)]
     
-    % preallocates array to store samples of X
-    x = zeros(n,N);
-    
-    % generates random samples
+    % generates random sample of size N from X ~ U(a,b)
     for k = 1:n
-        x(k,:) = a(k)+(b(k)-a(k))*rand(1,N);
+        x(k,:) = rand2(a(k),b(k),[1,N]);
     end
     
 end

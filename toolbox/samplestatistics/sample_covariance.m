@@ -1,9 +1,10 @@
 %==========================================================================
 %
-% sample_mean  Mean of a sample.
+% sample_covariance  Covariance of a sample.
 %
-%   xbar = sample_mean(x)
-%   xbar = sample_mean(x,w)
+%   Qxx = sample_covariance(x)
+%   Qxx = sample_covariance(x,w)
+%   Qxx = sample_covariance(__,bessel)
 %
 % Copyright © 2022 Tamas Kis
 % Last Update: 2022-09-29
@@ -24,11 +25,13 @@
 %   x       - (n×N double) sample of X (sample size = N)
 %   w       - (OPTIONAL) (N×1 double) weight vector (defaults to vector of
 %             1/N's)
+%   bessel  - (OPTIONAL) (n×1 double) true if Bessel's correction should be
+%             included, false otherwise (defaults to true)
 %
 % -------
 % OUTPUT:
 % -------
-%   xbar    - (n×1 double) sample mean
+%   Qxx     - (n×n double) sample covariance
 %
 % -----
 % NOTE:
@@ -37,7 +40,7 @@
 %       vector does not sum to 1, it is automatically normalized to do so.
 %
 %==========================================================================
-function xbar = sample_mean(x,w)
+function Qxx = sample_covariance(x,w)
     
     % sample size
     N = size(x,2);
@@ -47,7 +50,21 @@ function xbar = sample_mean(x,w)
         w = (1/N)*ones(N,1);
     end
     
-    % sample mean
-    xbar = x*w/(w.'*ones(N,1));
+    % determine the β coefficient
+    if bessel
+        beta = N/(N-1);
+    else
+        beta = 1;
+    end
+    
+    % vector of ones
+    ones_vec = ones(N,1);
+    
+    % auxiliary matrices
+    A = x-((x*w)/(w.'*ones_vec))*ones_vec.';
+    W = diag(w);
+    
+    % sample covariance
+    Qxx = (beta*A*W*A.')/(w.'*ones_vec);
     
 end
