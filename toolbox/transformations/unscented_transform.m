@@ -8,7 +8,7 @@
 %   [__] = unscented_transform(__,kappa)
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-09-27
+% Last Update: 2022-09-30
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -47,12 +47,12 @@ function [mu_y,Sigma_yy,Sigma_xy] = unscented_transform(mu_x,Sigma_xx,f,...
     % dimension of X
     n = length(mu_x);
     
-    % defaults "kappa" to 3-n if not input
+    % defaults kappa to 3-n if not input
     if (nargin < 5) || isempty(kappa)
         kappa = 3-n;
     end
     
-    % defaults "cross_covar" to "false" if not input
+    % defaults cross_covar to false if not input
     if (nargin < 4) || isempty(cross_covar)
         cross_covar = false;
     end

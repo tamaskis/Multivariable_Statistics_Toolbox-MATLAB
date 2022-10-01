@@ -1,13 +1,13 @@
 %==========================================================================
 %
-% sample_covariance  Covariance of a sample.
+% sample_cross_covariance  Cross covariance of two samples.
 %
-%   Qxx = sample_covariance(x)
-%   Qxx = sample_covariance(x,w)
-%   Qxx = sample_covariance(__,bessel)
+%   Qxy = sample_covariance(x,y)
+%   Qxy = sample_covariance(x,y,w)
+%   Qxy = sample_covariance(__,bessel)
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-09-29
+% Last Update: 2022-09-30
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -22,7 +22,8 @@
 % ------
 % INPUT:
 % ------
-%   x       - (n×N double) sample of X (sample size = N)
+%   x       - (n×N double) sample of X ∈ ℝⁿ (sample size = N)
+%   y       - (m×N double) sample of Y ∈ ℝᵐ (sample size = N)
 %   w       - (OPTIONAL) (N×1 double) weight vector (defaults to vector of
 %             1/N's)
 %   bessel  - (OPTIONAL) (n×1 double) true if Bessel's correction should be
@@ -31,7 +32,7 @@
 % -------
 % OUTPUT:
 % -------
-%   Qxx     - (n×n double) sample covariance
+%   Qxy     - (n×m double) sample cross covariance
 %
 % -----
 % NOTE:
@@ -40,7 +41,7 @@
 %       vector does not sum to 1, it is automatically normalized to do so.
 %
 %==========================================================================
-function Qxx = sample_covariance(x,w,bessel)
+function Qxx = sample_cross_covariance(x,y,w,bessel)
     
     % include Bessel's correction by default unless otherwise specified
     if (nargin < 3) || isempty(bessel)
@@ -67,9 +68,10 @@ function Qxx = sample_covariance(x,w,bessel)
     
     % auxiliary matrices
     A = x-((x*w)/(w.'*ones_vec))*ones_vec.';
+    B = y-((y*w)/(w.'*ones_vec))*ones_vec.';
     W = diag(w);
     
-    % sample covariance
-    Qxx = (beta*A*W*A.')/(w.'*ones_vec);
+    % sample cross covariance
+    Qxx = (beta*A*W*B.')/(w.'*ones_vec);
     
 end

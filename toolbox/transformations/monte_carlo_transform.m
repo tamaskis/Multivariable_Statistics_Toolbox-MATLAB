@@ -61,7 +61,8 @@ function [mu_y,Sigma_yy] = monte_carlo_transform(mu_x,Sigma_xx,f,N)
         y(:,k) = f(x(:,k));
     end
     
-    % approximates statistics of X and Y
-    [mu_y,Sigma_yy] = sample_statistics(x,y);
+    % approximates statistics of Y using sample statistics
+    mu_y = sample_mean(y);
+    Sigma_yy = sample_covariance(y);
     
 end
