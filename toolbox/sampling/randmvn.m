@@ -50,7 +50,7 @@ function x = randmvn(mu,Sigma,N)
     z = randn(n,N);
     
     % n×N matrix storing mean in each column
-    mu = repmat(mu,1,N);
+    mu = mu*ones(N,1)';
     
     % scales to multivariate normal distribution with given parameters
     x = Sigma_sqrt*z+mu;
