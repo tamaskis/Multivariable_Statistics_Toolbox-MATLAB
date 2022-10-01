@@ -2,10 +2,12 @@
 %
 % sample_statistics  Mean and covariance of a sample.
 %
-%   [mu,Sigma] = sample_statistics(x)
+%   [xbar,Qxx] = sample_statistics(x)
+%   [xbar,Qxx] = sample_statistics(x,w)
+%   [xbar,Qxx] = sample_statistics(x,wm,wc)
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-09-28
+% Last Update: 2022-10-01
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
@@ -21,6 +23,10 @@
 % INPUT:
 % ------
 %   x       - (n×N double) N samples of X
+%   wm      - (OPTIONAL) (N×1 double) mean weight vector (defaults to 
+%             vector of 1/N's)
+%   wc      - (OPTIONAL) (N×1 double) covariance weight vector (defaults to 
+%             wm)
 %
 % -------
 % OUTPUT:
@@ -29,7 +35,7 @@
 %   Sigma   - (n×n double) sample covariance of X
 %
 %==========================================================================
-function [mu,Sigma] = sample_statistics(x)
+function [mu,Sigma] = sample_statistics(x,wm,wc)
     
     % dimension of X
     n = size(x,1);

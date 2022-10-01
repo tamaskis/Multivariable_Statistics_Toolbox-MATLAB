@@ -6,7 +6,7 @@
 %   xbar = sample_mean(x,w)
 %
 % Copyright © 2022 Tamas Kis
-% Last Update: 2022-09-29
+% Last Update: 2022-10-01
 % Website: https://tamaskis.github.io
 % Contact: tamas.a.kis@outlook.com
 %
